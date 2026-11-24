@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import raw from '../../html/pages/pages/privacy-policy.html?raw';
+
+const path = '/pages/privacy-policy';
+const title = "Privacy Policy – Timber Two Joinery";
+const description = "  This Privacy Policy describes how Timber Two Joinery (the \"Site\", \"we\", \"us\", or \"our\") collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from timbertwo.com (the \"Site\") or otherwise communicate with us (collectively, the \"Services\"). For purposes of this Pri";
+const content = raw;
+---
+<Base title={title} description={description} path={path} bodyClass="privacy-policy page gradient">
+  <Fragment set:html={content} />
+</Base>

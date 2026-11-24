@@ -1,0 +1,12 @@
+---
+import Base from '../../../layouts/Base.astro';
+import raw from '../../../html/pages/blogs/the-scarcity-of-timber-products-in-australia.html?raw';
+
+const path = '/blogs/news/the-scarcity-of-timber-products-in-australia';
+const title = "The Scarcity of Timber Products in Australia: Navigating COVID-19 and – Timber Two Joinery";
+const description = "Australia's timber industry has faced unprecedented challenges due to the combined impact of COVID-19 and trade sanctions. These dual factors have disrupted international supply chains, affecting the availability and cost of timber products in the country. In response to the scarcity of traditional timber, businesses l";
+const content = raw;
+---
+<Base title={title} description={description} path={path} bodyClass="article gradient">
+  <Fragment set:html={content} />
+</Base>

@@ -1,0 +1,25 @@
+# Netlify redirects. Paths from the old Shopify store that no longer exist
+# are sent somewhere useful so old links and search results keep working.
+
+# The shop is gone: products and collections go to the bathrooms page
+/collections          /pages/service/bathrooms   301
+/collections/*        /pages/service/bathrooms   301
+/products             /pages/service/bathrooms   301
+/products/*           /pages/service/bathrooms   301
+/cart                 /                          301
+/cart/*               /                          301
+/account              /                          301
+/account/*            /                          301
+/search               /                          301
+/checkouts/*          /                          301
+/products.json        /                          301
+/collections.json     /                          301
+
+# Shopify's capitalised service page, now lowercase
+/pages/service/FURNITURE   /pages/service/furniture   301
+
+# Blog posts had placeholder handles on Shopify
+/blogs/news/horem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-nunc-vulputate-libero-et-velit-interdum-ac-aliquet-odio-mattis-2   /blogs/news/the-comeback-of-custom-furniture-and-woodworking   301
+/blogs/news/horem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-nunc-vulputate-libero-et-velit-interdum-ac-aliquet-odio-mattis-3   /blogs/news/the-scarcity-of-timber-products-in-australia      301
+/blogs/news/gorem-ipsum-dolor-sit   /blogs/news/modern-vanity-styles-vs-traditional-vanity-styles   301
+/blogs/news/tagged/*                /blogs/news                                                     301

@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import raw from '../html/pages/404.html?raw';
+
+const path = '/404';
+const title = "404 Not Found – Timber Two Joinery";
+const description = "";
+const content = raw;
+---
+<Base title={title} description={description} path={path} bodyClass="404 gradient">
+  <Fragment set:html={content} />
+</Base>

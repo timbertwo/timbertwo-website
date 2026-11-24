@@ -1,0 +1,12 @@
+---
+import Base from '../../../layouts/Base.astro';
+import raw from '../../../html/pages/blogs/the-comeback-of-custom-furniture-and-woodworking.html?raw';
+
+const path = '/blogs/news/the-comeback-of-custom-furniture-and-woodworking';
+const title = "The Comeback of Custom Furniture and Woodworking: Embracing Sustainabi – Timber Two Joinery";
+const description = "In a world dominated by mass-produced goods, the resurgence of custom furniture and woodworking has captured the hearts of many. Gone are the days of cookie-cutter designs; today, more people are seeking unique, personalized pieces that reflect their individuality and values. Custom furniture not only celebrates the ar";
+const content = raw;
+---
+<Base title={title} description={description} path={path} bodyClass="article gradient">
+  <Fragment set:html={content} />
+</Base>

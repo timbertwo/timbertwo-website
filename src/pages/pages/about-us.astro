@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import raw from '../../html/pages/pages/about-us.html?raw';
+
+const path = '/pages/about-us';
+const title = "About Us. – Timber Two Joinery";
+const description = "";
+const content = raw;
+---
+<Base title={title} description={description} path={path} bodyClass="about-us page gradient">
+  <Fragment set:html={content} />
+</Base>

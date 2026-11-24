@@ -1,0 +1,122 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "bytes": 212208,
+    "file": "home.html"
+  },
+  {
+    "path": "/pages/about-us",
+    "status": 200,
+    "bytes": 178445,
+    "file": "pages_about_us.html"
+  },
+  {
+    "path": "/pages/service",
+    "status": 200,
+    "bytes": 180256,
+    "file": "pages_service.html"
+  },
+  {
+    "path": "/pages/service/bathrooms",
+    "status": 200,
+    "bytes": 184134,
+    "file": "pages_service_bathrooms.html"
+  },
+  {
+    "path": "/pages/service/kitchen",
+    "status": 200,
+    "bytes": 183777,
+    "file": "pages_service_kitchen.html"
+  },
+  {
+    "path": "/pages/service/FURNITURE",
+    "status": 200,
+    "bytes": 185743,
+    "file": "pages_service_FURNITURE.html"
+  },
+  {
+    "path": "/pages/contact",
+    "status": 200,
+    "bytes": 169502,
+    "file": "pages_contact.html"
+  },
+  {
+    "path": "/pages/faqs",
+    "status": 200,
+    "bytes": 189332,
+    "file": "pages_faqs.html"
+  },
+  {
+    "path": "/pages/reviews",
+    "status": 200,
+    "bytes": 170526,
+    "file": "pages_reviews.html"
+  },
+  {
+    "path": "/pages/vanity-spec-sheet",
+    "status": 200,
+    "bytes": 164082,
+    "file": "pages_vanity_spec_sheet.html"
+  },
+  {
+    "path": "/pages/sustainability",
+    "status": 200,
+    "bytes": 179449,
+    "file": "pages_sustainability.html"
+  },
+  {
+    "path": "/pages/privacy-policy",
+    "status": 200,
+    "bytes": 190639,
+    "file": "pages_privacy_policy.html"
+  },
+  {
+    "path": "/pages/terms-conditions",
+    "status": 200,
+    "bytes": 187016,
+    "file": "pages_terms_conditions.html"
+  },
+  {
+    "path": "/blogs/news",
+    "status": 200,
+    "bytes": 180312,
+    "file": "blogs_news.html"
+  },
+  {
+    "path": "/blogs/news/horem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-nunc-vulputate-libero-et-velit-interdum-ac-aliquet-odio-mattis-2",
+    "status": 200,
+    "bytes": 181436,
+    "file": "blog_ac_aliquet_odio_mattis_2.html"
+  },
+  {
+    "path": "/blogs/news/horem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-nunc-vulputate-libero-et-velit-interdum-ac-aliquet-odio-mattis-3",
+    "status": 200,
+    "bytes": 178021,
+    "file": "blog_ac_aliquet_odio_mattis_3.html"
+  },
+  {
+    "path": "/blogs/news/gorem-ipsum-dolor-sit",
+    "status": 200,
+    "bytes": 177129,
+    "file": "blog_ws_gorem_ipsum_dolor_sit.html"
+  },
+  {
+    "path": "/404-probe-this-page-does-not-exist",
+    "status": 404,
+    "bytes": 163080,
+    "file": "404_probe_this_page_does_not_exist.html"
+  },
+  {
+    "path": "/products.json?limit=250",
+    "status": 200,
+    "bytes": 22498,
+    "file": "products.json"
+  },
+  {
+    "path": "/collections.json",
+    "status": 200,
+    "bytes": 770,
+    "file": "collections.json"
+  }
+]

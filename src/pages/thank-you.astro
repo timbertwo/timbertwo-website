@@ -1,0 +1,7 @@
+---
+import Base from '../layouts/Base.astro';
+import raw from '../html/pages/thank-you.html?raw';
+---
+<Base title="Thanks – Timber Two Joinery" description="Your enquiry has been sent to Timber Two Joinery." path="/thank-you" bodyClass="thank-you page gradient">
+  <Fragment set:html={raw} />
+</Base>

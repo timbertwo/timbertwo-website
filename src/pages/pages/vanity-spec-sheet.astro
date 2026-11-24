@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import raw from '../../html/pages/pages/vanity-spec-sheet.html?raw';
+
+const path = '/pages/vanity-spec-sheet';
+const title = "Vanity Spec Sheet – Timber Two Joinery";
+const description = "https://claude.ai/code/artifact/853a1b3d-6223-406f-b824-054133d98f26";
+const content = raw;
+---
+<Base title={title} description={description} path={path} bodyClass="vanity-spec-sheet page gradient">
+  <Fragment set:html={content} />
+</Base>

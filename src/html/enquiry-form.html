@@ -1,0 +1,50 @@
+<form method="POST" action="/thank-you" name="enquiry" data-netlify="true" netlify-honeypot="bot-field" id="ContactForm" accept-charset="UTF-8" class="isolate scroll-trigger animate--slide-in">
+  <input type="hidden" name="form-name" value="enquiry">
+  <input type="hidden" name="page" value="{PAGE}">
+  <p class="visually-hidden" aria-hidden="true">
+    <label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+  </p>
+  <div class="contact__fields">
+    <div class="field">
+      <input class="field__input" autocomplete="name" type="text" id="ContactForm-name" name="name" placeholder="Name" required>
+      <label class="field__label" for="ContactForm-name">Name</label>
+    </div>
+    <div class="field">
+      <input type="tel" id="ContactForm-phone" class="field__input" autocomplete="tel" name="phone" placeholder="Phone number">
+      <label class="field__label" for="ContactForm-phone">Phone number</label>
+    </div>
+  </div>
+  <div class="contact__fields">
+    <div class="field field--with-error">
+      <input autocomplete="email" type="email" id="ContactForm-email" class="field__input" name="email" spellcheck="false" autocapitalize="off" aria-required="true" placeholder="Email" required>
+      <label class="field__label" for="ContactForm-email">Email <span aria-hidden="true">*</span></label>
+    </div>
+    <div class="field">
+      <input type="text" id="ContactForm-suburb" class="field__input" autocomplete="address-level2" name="suburb" placeholder="Suburb">
+      <label class="field__label" for="ContactForm-suburb">Suburb</label>
+    </div>
+  </div>
+  <div class="contact__fields">
+    <div class="field request-type">
+      <label class="visually-hidden" for="request-type">What is it for?</label>
+      <select id="request-type" name="service">
+        <option value="">Select Your Service</option>
+        <option value="Furniture">Furniture</option>
+        <option value="Bathrooms">Bathrooms</option>
+        <option value="Kitchens">Kitchens</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <input type="text" id="ContactForm-budget" class="field__input" name="budget" placeholder="Budget">
+      <label class="field__label" for="ContactForm-budget">Budget</label>
+    </div>
+  </div>
+  <div class="field">
+    <textarea rows="10" id="ContactForm-body" class="text-area field__input" name="message" placeholder="Write a Message"></textarea>
+    <label class="form__label field__label" for="ContactForm-body">Write a Message</label>
+  </div>
+  <div class="contact__button">
+    <button type="submit" class="button">Submit</button>
+  </div>
+</form>

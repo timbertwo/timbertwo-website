@@ -1,0 +1,13 @@
+---
+import Base from '../../../layouts/Base.astro';
+import raw from '../../../html/pages/pages/service/furniture.html?raw';
+import form from '../../../html/enquiry-form.html?raw';
+
+const path = '/pages/service/furniture';
+const title = "Furniture – Timber Two Joinery";
+const description = "";
+const content = raw.replace('<!-- ENQUIRY_FORM -->', form.split('{PAGE}').join(path));
+---
+<Base title={title} description={description} path={path} bodyClass="service gradient">
+  <Fragment set:html={content} />
+</Base>

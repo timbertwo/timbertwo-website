@@ -1,0 +1,15 @@
+{
+  "name": "timbertwo-site",
+  "private": true,
+  "type": "module",
+  "description": "Static marketing site for Timber Two Joinery, cloned from the former Shopify store. Deploys to Netlify.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "harvest": "node scripts/harvest.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.4.13"
+  }
+}

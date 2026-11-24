@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import raw from '../../html/pages/pages/terms-conditions.html?raw';
+
+const path = '/pages/terms-conditions';
+const title = "Terms & Conditions – Timber Two Joinery";
+const description = "OVERVIEW This website is operated by Timber Two Joinery. Throughout the site, the terms “we”, “us” and “our” refer to Timber Two Joinery. Timber Two Joinery offers this website, including all information, tools and Services available from this site to you, the user, conditioned upon your acceptance of all terms, condit";
+const content = raw;
+---
+<Base title={title} description={description} path={path} bodyClass="terms-conditions page gradient">
+  <Fragment set:html={content} />
+</Base>

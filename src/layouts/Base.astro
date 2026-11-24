@@ -1,0 +1,187 @@
+---
+// The shared page shell: the Dawn theme's head, header and footer as the live
+// Shopify site rendered them, minus the shop, cart, account and search pieces.
+// Header, footer and the theme's font and colour variables are kept as plain
+// HTML files under src/html so they stay byte-for-byte faithful; this file
+// only decides what goes around them.
+import header from '../html/header.html?raw';
+import footer from '../html/footer.html?raw';
+import themeStyle from '../html/theme-style.html?raw';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** The page's path, e.g. /pages/about-us. Used for the canonical URL and the active menu item. */
+  path: string;
+  /** Body classes, the way the theme set them: handle, template, gradient. */
+  bodyClass?: string;
+  /** Path of the image to show when the page is shared. */
+  image?: string;
+}
+
+const {
+  title,
+  description = '',
+  path,
+  bodyClass = 'page gradient',
+  image = '/images/share-image.jpg',
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://timbertwo.com');
+const canonical = new URL(path === '/' ? '/' : path, site).href;
+const imageUrl = new URL(image, site).href;
+const year = new Date().getFullYear();
+
+const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// Marks the current page in the desktop menu and the mobile drawer, the way
+// Shopify did it on the live site.
+function markActive(html: string, current: string): string {
+  const p = escapeRe(current);
+  html = html.replace(
+    new RegExp(`(<a id="HeaderMenu-[^"]+" href="${p}" class="[^"]*")\\s*>(\\s*)<span\\s*>`),
+    '$1 aria-current="page">$2<span class="header__active-menu-item">',
+  );
+  html = html.replace(
+    new RegExp(`(<a id="HeaderMenu-[^"]+" href="${p}" class="[^"]*caption-large")\\s*>`),
+    '$1 aria-current="page">',
+  );
+  html = html.replace(
+    new RegExp(`(<a id="HeaderDrawer-[^"]+" href="${p}" class="[^"]*)"\\s*>`),
+    '$1 menu-drawer__menu-item--active" aria-current="page">',
+  );
+  return html;
+}
+
+const headerHtml = markActive(header, path);
+const footerHtml = footer.split('{YEAR}').join(String(year));
+---
+
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/images/Logo-Icon-900.w32.h32.ccenter.png" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta property="og:site_name" content="Timber Two Joinery" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+
+    <link rel="preload" as="font" href="/fonts/assistant_n4.9120912a469cad1cc292572851508ca49d12e768.woff2" type="font/woff2" crossorigin />
+    <link rel="preload" as="font" href="/fonts/oswald_n4.7760ed7a63e536050f64bb0607ff70ce07a480bd.woff2" type="font/woff2" crossorigin />
+
+    <link href="/theme/base.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/vendor/slick/slick-theme.css" />
+    <link href="/theme/main.css" rel="stylesheet" type="text/css" media="all" />
+    <Fragment set:html={themeStyle} />
+
+    <script is:inline src="/theme/constants.js" defer></script>
+    <script is:inline src="/theme/pubsub.js" defer></script>
+    <script is:inline src="/theme/global.js" defer></script>
+    <script is:inline src="/theme/animations.js" defer></script>
+    <script is:inline>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+  </head>
+
+  <body class={bodyClass}>
+    <a class="skip-to-content-link button visually-hidden" href="#MainContent">Skip to content</a>
+    <link href="/theme/component-card.css" rel="stylesheet" type="text/css" media="all" />
+
+    <Fragment set:html={headerHtml} />
+
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      <slot />
+    </main>
+
+    <Fragment set:html={footerHtml} />
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">Choosing a selection results in a full page refresh.</li>
+      <li id="a11y-new-window-message">Opens in a new window.</li>
+    </ul>
+
+    <script is:inline src="/theme/details-disclosure.js" defer></script>
+    <script is:inline id="sections-script" data-sections="header" src="/theme/sections-scripts.js" defer></script>
+    <script is:inline>
+      // Opens the desktop dropdown menus on hover, as the live site did.
+      document.querySelectorAll('.header__inline-menu details').forEach((item) => {
+        item.addEventListener('mouseover', () => {
+          item.setAttribute('open', true);
+          item.querySelector('ul').addEventListener('mouseleave', () => item.removeAttribute('open'));
+          item.addEventListener('mouseleave', () => item.removeAttribute('open'));
+        });
+      });
+    </script>
+    <script is:inline>
+      // Strings the theme's global.js expects to find. There is no cart any
+      // more, so these are never shown.
+      window.routes = {};
+      window.cartStrings = { error: '', quantityError: '' };
+      window.variantStrings = { addToCart: '', soldOut: '', unavailable: '', unavailable_with_option: '' };
+      window.quickOrderListStrings = {};
+      window.accessibilityStrings = {
+        imageAvailable: 'Image [index] is now available in gallery view',
+        shareSuccess: 'Link copied to clipboard',
+        pauseSlideshow: 'Pause slideshow',
+        playSlideshow: 'Play slideshow',
+      };
+    </script>
+    <link rel="stylesheet" type="text/css" href="/vendor/slick/slick.css" />
+    <script is:inline src="/vendor/jquery-3.7.1.min.js"></script>
+    <script is:inline src="/vendor/slick/slick.min.js"></script>
+    <script is:inline>
+      // Testimonials carousel on the home page.
+      if (window.jQuery && document.querySelector('.reviews-slider')) {
+        jQuery('.reviews-slider').slick({
+          dots: true,
+          infinite: false,
+          speed: 300,
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          prevArrow:
+            "<button type='button' class='slick-prev pull-left'><svg width='16' height='30' viewBox='0 0 16 30' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M0.413496 15.7628L1.41176 14.7645L0.413496 13.7662C-0.137832 14.3176 -0.137832 15.2114 0.413496 15.7628ZM3.4083 14.7645L15.5865 2.5863C16.1378 2.03497 16.1378 1.14109 15.5865 0.589766C15.0352 0.0384374 14.1413 0.0384374 13.59 0.589766L0.413496 13.7662C0.413435 13.7663 0.413496 13.7662 1.41176 14.7645C0.413496 15.7628 0.413435 15.7627 0.413496 15.7628L13.59 28.9392C14.1413 29.4906 15.0352 29.4906 15.5865 28.9392C16.1378 28.3879 16.1378 27.494 15.5865 26.9427L3.4083 14.7645Z' fill='#C79F74'/></svg></button>",
+          nextArrow:
+            "<button type='button' class='slick-next pull-right'><svg width='16' height='30' viewBox='0 0 16 30' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M15.5865 13.5898L14.5882 14.588L15.5865 15.5863C16.1378 15.035 16.1378 14.1411 15.5865 13.5898ZM12.5917 14.588L0.413497 26.7662C-0.137831 27.3176 -0.137831 28.2114 0.413497 28.8628C0.964825 29.4141 1.85871 29.4141 2.41004 28.8628L15.5865 15.5863C15.5866 15.5862 15.5865 15.5863 14.5882 14.588C15.5865 13.5898 15.5866 13.5898 15.5865 13.5898L2.41004 0.413311C1.85871 -0.138017 0.964825 -0.138017 0.413497 0.413311C-0.137831 0.964639 -0.137831 1.85852 0.413497 2.40985L12.5917 14.588Z' fill='#C79F74'/></svg></button>",
+          responsive: [
+            { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+            { breakpoint: 750, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+          ],
+        });
+      }
+    </script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'http://schema.org',
+      '@type': 'Organization',
+      name: 'Timber Two Joinery',
+      url: site.href,
+      logo: new URL('/images/image_2_11.w600.png', site).href,
+      telephone: '+61449933239',
+      email: 'info@timbertwo.com',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '319 Lue Road',
+        addressLocality: 'Mudgee',
+        addressRegion: 'NSW',
+        postalCode: '2850',
+        addressCountry: 'AU',
+      },
+      sameAs: [
+        'https://www.facebook.com/timbertwo.mudgee/',
+        'https://www.instagram.com/timbertwo_/',
+        'https://www.youtube.com/@timbertwo',
+        'https://www.pinterest.com.au/TimberTwo_/',
+      ],
+    })} />
+  </body>
+</html>

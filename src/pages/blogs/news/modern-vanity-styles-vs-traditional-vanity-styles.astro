@@ -1,0 +1,12 @@
+---
+import Base from '../../../layouts/Base.astro';
+import raw from '../../../html/pages/blogs/modern-vanity-styles-vs-traditional-vanity-styles.html?raw';
+
+const path = '/blogs/news/modern-vanity-styles-vs-traditional-vanity-styles';
+const title = "Modern Vanity Styles vs. Traditional Vanity Styles: Choosing the Perfe – Timber Two Joinery";
+const description = "When it comes to bathroom vanities, there are two distinct design styles that dominate the market: modern and traditional. Each style brings its unique charm and character to your bathroom, and now, you have the option to embrace sustainability by incorporating recycled timber into your vanity design. In this blog post";
+const content = raw;
+---
+<Base title={title} description={description} path={path} bodyClass="article gradient">
+  <Fragment set:html={content} />
+</Base>
