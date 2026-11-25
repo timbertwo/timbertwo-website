@@ -31,7 +31,8 @@ Notes on Netlify's layout as of November 2026 (the "Manage" screen):
 
 - Build settings live under Manage, Build and deploy, Build settings. The base directory must be blank. (The site was first imported from inside the quoting app's repository with a base directory of `site`; the free plan's one-contributor rule on private repositories then blocked every build, which is why the site has its own public repository.)
 - There is no Trigger deploy button. A push to `main` starts a build. A commit that changes no files shows as "Didn't build".
-- Manage, "Who can see it" starts as "Private, only you". Set it to public before the domain is connected.
+- Manage, "Who can see it" starts as "Private, only you". Set it to public before the domain is connected; while private, every page answers 401 to visitors.
+- The Forms screen under Manage only offers to have Netlify's AI agent add a form. The classic switch for forms already in the pages is at `app.netlify.com/projects/<project>/configuration/forms` (or type "form detection" in the Find a setting box). Enable it, then deploy once more so the form is registered.
 - Switch off "Show the Powered by Netlify badge" on the Manage screen.
 - Each production deploy spends 15 of the plan's 300 monthly credits, so settle settings first and build once.
 
