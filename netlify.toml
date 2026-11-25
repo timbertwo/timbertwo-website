@@ -1,8 +1,10 @@
 # Netlify settings for the marketing site.
-# This repository is the site itself: in the Netlify UI leave the base
-# directory blank.
+# This repository is the site itself. "base" is stated here because a base
+# directory in a root-level netlify.toml overrides whatever the Netlify UI
+# holds (an earlier import had it set to "site").
 
 [build]
+  base = "."
   command = "npm run build"
   publish = "dist"
 
