@@ -27,6 +27,14 @@ This is the order of work for moving timbertwo.com off Shopify onto Netlify, all
 4. Deploy. Netlify gives the site a random name like `brave-curie-12345.netlify.app`. Rename it under Site configuration, Site details, Change site name, to `timbertwo`.
 5. Check every page on the `.netlify.app` address with Jake. Send a test enquiry.
 
+Notes on Netlify's layout as of November 2026 (the "Manage" screen):
+
+- Build settings live under Manage, Build and deploy, Build settings. The first import built the quoting app at the repository root until the base directory was set to `site`.
+- There is no Trigger deploy button. A push to `main` starts a build, but only when a file inside `site/` changed; a commit outside the folder shows as "Didn't build".
+- Manage, "Who can see it" starts as "Private, only you". Set it to public before the domain is connected.
+- Switch off "Show the Powered by Netlify badge" on the Manage screen.
+- Each production deploy spends 15 of the plan's 300 monthly credits, so settle settings first and build once.
+
 ## 3. Enquiry emails
 
 1. Forms, Submission notifications, Add notification, Email notification. Recipient: info@timbertwo.com. Form: `enquiry`.
