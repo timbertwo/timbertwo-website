@@ -1,6 +1,6 @@
 # Timber Two marketing site: standing instructions
 
-This folder is the static public website (Astro, deployed to Netlify). The quoting app lives in the repository root and is a separate deployment; see the root CLAUDE.md for it.
+This repository is the static public website (Astro, deployed to Netlify). The quoting app is a separate, private repository (`Timber-Two-Quoting-app`) with its own deployment. This repository is public on purpose: Netlify's free plan builds a private repository's commits from only one GitHub account.
 
 ## Read first
 

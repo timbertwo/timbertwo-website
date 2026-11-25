@@ -4,33 +4,33 @@ This is the order of work for moving timbertwo.com off Shopify onto Netlify, all
 
 ## What the move changes
 
-- The website is now a set of plain files (this folder, built with `npm run build`). Netlify hosts them for free.
+- The website is now a set of plain files (this repository, built with `npm run build`). Netlify hosts them for free.
 - The shop, cart, customer login and search are gone. There are no prices anywhere on the site.
-- Every enquiry form (contact page and the three service pages) posts to Netlify Forms, which emails the enquiry to the business and keeps a copy in the Netlify dashboard. Later, the quoting app in this repository takes over quoting.
+- Every enquiry form (contact page and the three service pages) posts to Netlify Forms, which emails the enquiry to the business and keeps a copy in the Netlify dashboard. Later, the quoting app (its own private repository, `Timber-Two-Quoting-app`) takes over quoting.
 - Shopify gets cancelled. The domain stays at GoDaddy. The email (info@timbertwo.com) runs on Microsoft 365 and is not touched.
 
 ## 1. Accounts, all in Jake's name
 
-1. **GitHub** (free): Jake needs an account, then this repository is transferred to it (GitHub: repository Settings, Danger Zone, Transfer ownership). The repository also holds the quoting app, so both move together. Until then Netlify can deploy from the current owner's account, but the site would then depend on that account.
+1. **GitHub** (free): Jake's account owns two repositories, `timbertwo-website` (this site, public) and `Timber-Two-Quoting-app` (the quoting app, private). The website repository is public on purpose: Netlify's free plan builds a private repository's commits from only one GitHub account, which would stop anyone but Jake from updating the site. Whoever maintains the site is added as a collaborator on `timbertwo-website` (repository Settings, Collaborators).
 2. **Netlify** (free): sign up at netlify.com with Jake's email, choosing "Sign up with GitHub" so Netlify can read the repository.
 
 ## 2. Deploy the site to Netlify
 
 1. In Netlify: Add new site, Import an existing project, GitHub, pick the repository.
 2. Build settings:
-   - Base directory: `site`
+   - Base directory: leave blank
    - Build command: `npm run build`
-   - Publish directory: `dist` (Netlify treats it as relative to the base directory and shows it as `site/dist`)
+   - Publish directory: `dist`
    - Branch: `main`
-   `site/netlify.toml` repeats these and pins Node 22.
+   `netlify.toml` repeats these and pins Node 22.
 3. **Before the first deploy**, open the site's Forms tab and turn on "Enable form detection". Without it the enquiry form does nothing. If the site was already deployed, turn it on and trigger a new deploy.
 4. Deploy. Netlify gives the site a random name like `brave-curie-12345.netlify.app`. Rename it under Site configuration, Site details, Change site name, to `timbertwo`.
 5. Check every page on the `.netlify.app` address with Jake. Send a test enquiry.
 
 Notes on Netlify's layout as of November 2026 (the "Manage" screen):
 
-- Build settings live under Manage, Build and deploy, Build settings. The first import built the quoting app at the repository root until the base directory was set to `site`.
-- There is no Trigger deploy button. A push to `main` starts a build, but only when a file inside `site/` changed; a commit outside the folder shows as "Didn't build".
+- Build settings live under Manage, Build and deploy, Build settings. The base directory must be blank. (The site was first imported from inside the quoting app's repository with a base directory of `site`; the free plan's one-contributor rule on private repositories then blocked every build, which is why the site has its own public repository.)
+- There is no Trigger deploy button. A push to `main` starts a build. A commit that changes no files shows as "Didn't build".
 - Manage, "Who can see it" starts as "Private, only you". Set it to public before the domain is connected.
 - Switch off "Show the Powered by Netlify badge" on the Manage screen.
 - Each production deploy spends 15 of the plan's 300 monthly credits, so settle settings first and build once.
@@ -86,5 +86,5 @@ When the quoting app is live, link it from the header menu (both the desktop lis
 ## 8. What Jake keeps
 
 - Logins: GitHub, Netlify, GoDaddy, Microsoft 365. Nothing else.
-- This repository: the site in `site/`, the quoting app at the root.
+- Two repositories under his GitHub account: `timbertwo-website` (this site) and `Timber-Two-Quoting-app` (the quoting app).
 - `reference/original-images/` on the computer that did the move holds full-size copies of every photo and the original 97 MB video, for his records. It is not in the repository.

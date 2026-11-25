@@ -47,6 +47,6 @@ Commit and push to `main`; Netlify rebuilds in about a minute.
 
 ## What is not here on purpose
 
-- No shop, prices, cart or checkout. The quoting app in the repository root will take over quoting; link it from the menu when it is live.
+- No shop, prices, cart or checkout. The quoting app, in its own repository (`Timber-Two-Quoting-app`), will take over quoting; link it from the menu when it is live.
 - No analytics or tracking scripts. Add them to `Base.astro` if wanted.
 - The "Vanity Spec Sheet" page still links to the Claude artifact form that preceded the quoting app.

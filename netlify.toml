@@ -1,6 +1,6 @@
 # Netlify settings for the marketing site.
-# In the Netlify UI the site's base directory must be set to "site" because
-# this folder sits inside the quoting app's repository.
+# This repository is the site itself: in the Netlify UI leave the base
+# directory blank.
 
 [build]
   command = "npm run build"
